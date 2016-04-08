@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] != nil %>
+  <h1>Nada foi encontrado</h1>
+<% end %>
 
 <%= form_tag books_path, class: "form-inline", method: :get do %>
 <div class="input-group input-group-lg">

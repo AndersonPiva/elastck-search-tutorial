@@ -5,9 +5,13 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     if params[:query].present?
-      @books = Book.search(params[:query], page: params[:page],per_page: 1)
+      @books = Book.search(params[:query], page: params[:page],per_page: 3)
+      if @books.blank?
+        flash[:notice] = ''
+      end
     else
       @books = Book.all.paginate(page: params[:page], per_page: 3)
+      flash[:notice] = nil
     end
   end
 
