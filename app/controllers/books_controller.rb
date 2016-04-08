@@ -4,6 +4,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
+    flash[:notice] = nil
     if params[:query].present?
       @books = Book.search(params[:query], page: params[:page],per_page: 3)
       if @books.blank?
@@ -11,7 +12,6 @@ class BooksController < ApplicationController
       end
     else
       @books = Book.all.paginate(page: params[:page], per_page: 3)
-      flash[:notice] = nil
     end
   end
 
